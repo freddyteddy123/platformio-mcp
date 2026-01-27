@@ -1,0 +1,42 @@
+{
+  "agents": [
+    {
+      "id": "main-agent",
+      "type": "orchestrator",
+      "tools": ["openai-tool", "azureai-tool"]
+    }
+  ],
+  "tools": [
+    {
+      "id": "openai-tool",
+      "type": "OpenAI",
+      "config": {
+        "apiKey": "YOUR_OPENAI_API_KEY",
+        "model": "gpt-4"
+      }
+    },
+    {
+      "id": "azureai-tool",
+      "type": "AzureAI",
+      "config": {
+        "endpoint": "YOUR_AZURE_ENDPOINT",
+        "apiKey": "YOUR_AZURE_API_KEY",
+        "deployment": "gpt-4"
+      }
+    }
+  ],
+  "workflow": {
+    "steps": [
+      {
+        "agent": "main-agent",
+        "tool": "openai-tool",
+        "input": "Hello, world!"
+      },
+      {
+        "agent": "main-agent",
+        "tool": "azureai-tool",
+        "input": "Summarize the previous response."
+      }
+    ]
+  }
+}

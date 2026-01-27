@@ -14,7 +14,7 @@
   "files.exclude": {
     "**/.DS_Store": true,
     "**/node_modules": true,
-    "**/build": false
+    "**/build": true
   },
   "search.exclude": {
     "**/node_modules": true,

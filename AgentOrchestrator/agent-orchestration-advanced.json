@@ -1,0 +1,58 @@
+{
+  "agents": [
+    {
+      "id": "main-agent",
+      "type": "orchestrator",
+      "tools": ["openai-tool", "azureai-tool", "custom-api-tool"]
+    }
+  ],
+  "tools": [
+    {
+      "id": "openai-tool",
+      "type": "OpenAI",
+      "config": {
+        "apiKey": "YOUR_OPENAI_API_KEY",
+        "model": "gpt-4"
+      }
+    },
+    {
+      "id": "azureai-tool",
+      "type": "AzureAI",
+      "config": {
+        "endpoint": "YOUR_AZURE_ENDPOINT",
+        "apiKey": "YOUR_AZURE_API_KEY",
+        "deployment": "gpt-4"
+      }
+    },
+    {
+      "id": "custom-api-tool",
+      "type": "HttpApi",
+      "config": {
+        "url": "https://api.example.com/process",
+        "method": "POST",
+        "headers": {
+          "Authorization": "Bearer YOUR_TOKEN"
+        }
+      }
+    }
+  ],
+  "workflow": {
+    "steps": [
+      {
+        "agent": "main-agent",
+        "tool": "openai-tool",
+        "input": "Generate a summary of the following text: ..."
+      },
+      {
+        "agent": "main-agent",
+        "tool": "custom-api-tool",
+        "input": "Send the summary to the custom API for further processing."
+      },
+      {
+        "agent": "main-agent",
+        "tool": "azureai-tool",
+        "input": "Take the API response and translate it to French."
+      }
+    ]
+  }
+}
